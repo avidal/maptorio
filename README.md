@@ -56,7 +56,7 @@ Setup and Usage
 First, clone this repository and download the dependencies:
 
 ```
-$ git clone git://github.com:avidal/maptorio.git
+$ git clone git://github.com:avidal/maptorio.git $GOPATH/src/github.com/avidal/maptorio
 $ cd maptorio
 $ go get ./...
 ```
