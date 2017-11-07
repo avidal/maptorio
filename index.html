@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Factorio Maps</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<style type="text/css">
+    html { height: 100% }
+    body { height: 100%; margin: 0px; padding: 0px }
+    #map { height: 100%; z-index: 0; }
+</style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
+   integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
+   crossorigin=""/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.5.0/Control.MiniMap.min.css"/>
+<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"
+   integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
+   crossorigin=""></script>
+<script src="https://unpkg.com/leaflet-hash@0.2.1/leaflet-hash.js"></script>
+<script src="https://unpkg.com/leaflet.tilelayer.fallback@1.0.3/dist/leaflet.tilelayer.fallback.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.5.0/Control.MiniMap.min.js"></script>
+</head>
+<body>
+<div id="map" style="background: #1B2D33;"></div>
+<script>
+    var map = L.map('map', {
+        minZoom: 0,
+        maxZoom: 11,
+        continuousWorld: false,
+        crs: L.CRS.Simple
+    }).setView([0, 0], 10);
+    L.tileLayer('tiles/{z}/{x}x{y}.jpg', {
+        minNativeZoom:  4,
+        maxNativeZoom: 10,
+        tileSize: 1024,
+        errorTileUrl: 'empty.jpg',
+        noWrap: true
+    }).addTo(map);
+
+    var hash = new L.Hash(map);
+
+    var minimap = new L.Control.MiniMap(new L.TileLayer(
+        'tiles/{z}/{x}x{y}.jpg', {
+          minNativeZoom: 4,
+          maxNativeZoom: 10,
+          tileSize: 1024,
+          errorTileUrl: 'empty.jpg',
+          noWrap: true,
+          zoomLevelOffset: -6
+        }
+    )).addTo(map);
+
+    /*
+    var DebugTiles = L.GridLayer.extend({
+        createTile: function(coords) {
+            var div = L.DomUtil.create('div');
+            div.style.border = '1px solid white'
+            div.style.color = 'white'
+            div.innerHTML = coords.x + ', ' + coords.y + ', ' + coords.z + '<br>' + 
+            this._tileCoordsToBounds(coords).toBBoxString();
+            return div
+        }
+    });
+    
+    (new DebugTiles).addTo(map)
+    */
+
+</script>
+</body>
+</html>

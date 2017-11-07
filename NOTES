@@ -1,0 +1,36 @@
+Chunk coordinates to world coordinates: x*32, y*32
+
+This gives you a world position anchored in the top-left
+
+To get the center of a chunk:
+    chunk.x * 32 + 16
+    chunk.y * 32 + 16
+
+To get neighboring chunks (for entity searching):
+    topleft:
+        (chunk.x - 1) * 32
+        (chunk.y - 1 ) * 32
+
+    bottomright:
+        chunk.x + 2 * 32
+        chunk.y + 2 * 32
+
+    This is because world pos for a chunk is in the top left
+    So if you want the chunk below the current chunk you add 1 to y
+    then multiply by 32...but that area only covers the current chunk.
+    If you add 2 then multiply you get a position that is the top
+    2 chunks down, which covers the source chunk plus the southern chunk.
+
+
+Taking a screenshot at 1024x1024x1 with a position of chunk.x * 32 + 16, chunk.y * 32 + 16 gives you a 1:1 mapping
+where the screenshot covers *exactly* that chunk.
+
+If you screenshot 2048x2048x1 you'll get a 2x2 square of chunks, which means the center of the shot should be
+x + 1 * 32 + 16, y + 1 * 32 + 16 to move the center to the intersection of all four chunks. The resulting screenshot
+is the same as taking four screenshots at 1024; each chunk is exactly 1024x1024
+
+Or, take a shot at 2048x2048x2 and you'll cover exactly one chunk (like 1024x1), but with twice the resolution.
+
+For benchmarking, we may want to try 2048x1 to generate zoom 9 as well as 1024x1 to generate zoom 10. Is it faster to have
+the game generate 25% as many screenshots and then split them up? Maybe not
+split them up at all and let leaflet sub them in with a maxNativeZoom: 9?

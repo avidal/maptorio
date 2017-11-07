@@ -1,0 +1,44 @@
+; path to your factorio binary
+binary-path=
+
+; resolution for screenshots, note that anything under 1024 is bad quality and over 1024 takes a *long* time
+; options: 512, 1024, 2048, 4096
+screenshot-resolution = 1024
+
+; base output directory for generated maps, defaults to the current directory
+; note that each run will create a directory named after the save file
+; within this output directory
+; eg: if output-directory is ./build and you render a save named 'railworld.zip'
+; the resulting map will be in ./build/maptorio-railworld
+; note that this directory will be deleted if it already exists
+output-directory = 
+
+; temporary directory to use for the initial chunk screenshot generation phase
+; note that the application will create a new child directory with a random component per run
+; if the directory does not already exist it will be created
+; defaults to your system temporary directory
+temporary-directory = 
+
+; number of neighboring chunks to screenshot if a given chunk has player built items
+; eg; setting it to 1 means that if a chunk has items then that chunk, plus one chunk
+; in each direction will be rendered meaning a 3x3 grid with the primary chunk in the middle
+grow-chunks = 1
+
+; whether or not to show entity info in the map (eg, the extra info when the alt key is pressed in-game)
+; recommended to keep this on, as it makes viewing the map more pleasant
+show-entity-info = true
+
+; number that represents the time of day that should be represented in the map, 0 means midnight, 12 means noon, etc.
+; options: 0 to 23
+time-of-day = 12
+
+; base path for additional mods to use when generating screenshots; useful for things like
+; Bottleneck that add ui elements present in screenshots
+; default is the normal factorio user data directory
+mod-directory =
+
+; list of mods that will be loaded from the mod-directory. leave it blank to not load any,
+; or set it to * to load all, otherwise comma separate list of mod names, not including the version specifier or zip extension
+; eg: enabled-mods = Bottleneck, even-distribution
+; default: empty (no mods will be loaded)
+enabled-mods =

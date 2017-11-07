@@ -1,0 +1,17 @@
+# misc backup files
+*.sw[po]
+*.bak
+*.tmp
+*~
+
+# compiled files
+*.py[co]
+
+# os cruft
+.DS_Store
+Thumbs.db
+
+# by default, generated maps are under maptorio-<save name>
+maptorio-*/
+
+maptorio.conf
