@@ -1,4 +1,4 @@
-package main
+package main // import "code.heyviddy.com/maptorio/cmd"
 
 import (
 	"fmt"
@@ -363,7 +363,7 @@ skip-vram-detection=true
 	var modControl = `
 -- maptorio-control.lua
 
-local ticks = 0 
+local ticks = 0
 script.on_init(function()
     script.on_event(defines.events.on_tick, function()
         ticks = ticks + 1
@@ -413,10 +413,10 @@ function generate()
         for y = topleft.y-1, bottomright.y+1, 1 do
             local items = 0
             local generated = surface.is_chunk_generated({x, y})
-            
+
             if not generated then
                 table.insert(log, "--> not generated, skipping.")
-            else 
+            else
                 -- if this chunk has a nearby chunk with any items in it, we'll render it
                 local check_area = {
                     top_left = { x = (x - 1) * 32 - 16, y = (y - 1) * 32 - 16},

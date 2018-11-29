@@ -1,4 +1,4 @@
-package maptorio
+package maptorio // import "code.heyviddy.com/maptorio"
 
 import (
 	"bytes"
